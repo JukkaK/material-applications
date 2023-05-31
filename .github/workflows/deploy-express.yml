@@ -22,7 +22,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       # Builds devopsdockeruh/docker-hy.github.io
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v2        
         with:
           push: true
           tags: devopsdockeruh/coursepage:latest          
+          working-directory: ./express-app/
