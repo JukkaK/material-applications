@@ -34,4 +34,17 @@ jobs:
         uses: docker/build-push-action@v4       
         with:
           push: true
-          tags: jukkaatschool/devopswithdocker2023:latest                              
+          tags: jukkaatschool/devopswithdocker2023:latest 
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}      
+      - name: Build and deploy Container App
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          appSourcePath: ${{ github.workspace }}
+          registryUrl: jukkaatschool.dockerhub.io
+          imageToDeploy: jukkaatschool/devopswithdocker2023:latest
+          registryUsername: ${{ secrets.DOCKERHUB_USERNAME }}
+          registryPassword: ${{ secrets.DOCKERHUB_TOKEN }}
+          containerAppName: devopsdocker2023                                                 
