@@ -47,4 +47,12 @@ jobs:
           imageToDeploy: jukkaatschool/devopswithdocker2023:latest
           registryUsername: ${{ secrets.DOCKERHUB_USERNAME }}
           registryPassword: ${{ secrets.DOCKERHUB_TOKEN }}
-          containerAppName: devopsdocker2023                                                 
+          containerAppName: devopsdocker2023
+      # Force image pull on container app
+      - name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.46.0
+          inlineScript: |
+            az account show
+            az containerapp update --name devopsdocker2023 --resource-group rg-containerapp --image jukkaatschool/devopswithdocker2023:latest                                                           
