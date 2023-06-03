@@ -43,7 +43,7 @@ jobs:
         uses: azure/container-apps-deploy-action@v1
         with:
           appSourcePath: ${{ github.workspace }}
-          #registryUrl: jukkaatschool.dockerhub.io
+          registryUrl: registry.hub.docker.com
           imageToDeploy: jukkaatschool/devopswithdocker2023:latest
           registryUsername: ${{ secrets.DOCKERHUB_USERNAME }}
           registryPassword: ${{ secrets.DOCKERHUB_TOKEN }}
